@@ -1,4 +1,5 @@
-import sys,cv2
+import sys
+import cv2
 import time
 from pymata4EX import pymata4EX
 

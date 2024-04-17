@@ -1,9 +1,13 @@
 import time
+import os
+import sys
 from pymata4EX import pymata4EX
-from modules.i2c_liquidcrystaldisplay import \
-    LiquidCrystal_I2C  # Assuming the i2c_liquidcrystaldisplay.py module is in the 'modules' directory
+# The modules directory is in the parent directory
+parent_directory = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(parent_directory)
+from modules.i2c_liquidcrystaldisplay import LiquidCrystal_I2C
 
-# Initialize pymata4EX instance
+## Initialize pymata4EX instance
 myboard = pymata4EX.Pymata4EX()
 
 # Set up DHT sensor on pin 2
@@ -34,4 +38,4 @@ while True:
         LCD.print(f'Humidity: {humidity}%')
 
     # Wait for a short duration before reading again
-    time.sleep(2)
+    time.sleep(3)  # Increased delay to 3 seconds
