@@ -1,0 +1,30 @@
+Analog input: Pins A0~A5, input values between 0~1023, indicating how many such values exist.
+
+Digital input: Digital pins 0-13, there are only two input values: 0 and 1. When there is current passing through, it is 1, otherwise it is 0. It means yes or no.
+
+Analog output: Pins 3, 5, 6, 9, 10, 11. The output value is between 0 and 255, which can control the intensity of the output current to achieve the effect of controlling the output of the component.
+
+Digital output: Digital pins 0-13 can all be used as digital pins. There are only two states of 0 or 1 when output, which are used to control whether the power is on.
+
+
++5V, +3.3V: the positive pole of the power supply on the control board.
+GND: The negative pole of the power supply on the control board.
+
+
+Digital input/output pins:
+- Hall machine (12);
+- 8*8 dot matrix (8, 11, 13);
+- Ultrasonic sensor (Trig 7 Echo 9);
+- RGB two colors (red 5, green 6, blue 10);
+- Buzz Sauce (4);
+- Fan sensor (3);
+- DHT11 temperature and humidity sensor (2);
+- Bluetooth module (it is recommended to turn off the Bluetooth module when not in use) (0, 1);
+
+
+Analog input pins:
+- Light transmitter (AO);
+- Sound sensor (A1);
+- Slide potentiometer (A2);
+- Infrared reception (A3);
+- LCD display (A4, A5);
