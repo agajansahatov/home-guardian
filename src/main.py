@@ -2,23 +2,28 @@ import time
 
 from pymata4EX import pymata4EX
 from modules.lightbulb import LightBulb
+from modules.slide_potentiometer import SlidePotentiometer
 
 if __name__ == "__main__":
     board = pymata4EX.Pymata4EX()
+    potentiometer = SlidePotentiometer(board, 2)
     lightbulb = LightBulb(board)
 
-    lightbulb.turn_on()
+    try:
+        while True:
+            pot_value = potentiometer.read_value()
 
-    lightbulb.set_color("red")
-    time.sleep(2)
+            # Print the value read from the potentiometer
+            print("Potentiometer value:", pot_value)
 
-    lightbulb.set_color("green")
-    time.sleep(2)
+            # Optionally, you can use this value to adjust the light bulb color
+            # For example:
+            # if pot_value < 512:
+            #     lightbulb.set_color("red")
+            # else:
+            #     lightbulb.set_color("green")
 
-    lightbulb.set_color("blue")
-    time.sleep(2)
+            # Add your logic here to control the light bulb based on the potentiometer value
 
-    lightbulb.set_color("yellow")
-    time.sleep(2)
-
-    lightbulb.turn_off()
+    except KeyboardInterrupt:
+        board.shutdown()
