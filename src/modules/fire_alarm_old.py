@@ -52,4 +52,3 @@ class FireAlarm:
             stop_thread.start()
             if self.alarm_thread:
                 self.alarm_thread.join()
-                self.alarm_thread = None

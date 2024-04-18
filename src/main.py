@@ -1,53 +1,26 @@
 import time
 from pymata4EX import pymata4EX
 from modules.climate_sensor import ClimateSensor
-from modules.display import Display
-from modules.fan import Fan
-from modules.fire_alarm import FireAlarm
-from modules.light_bulb import LightBulb
 from modules.slide_potentiometer import SlidePotentiometer
+from home_guardian import HomeGuardian
 
 if __name__ == "__main__":
     # Initialize board and components
     board = pymata4EX.Pymata4EX()
-    climate_sensor = ClimateSensor(board)
-    display = Display(board)
-    fan = Fan(board)
-    fire_alarm = FireAlarm(board)
-    light_bulb = LightBulb(board)
+    # climate_sensor = ClimateSensor(board)
     slide_potentiometer = SlidePotentiometer(board)
-
-    display.show('Activating', 'sensors...')
+    home_guardian = HomeGuardian(board)
 
     try:
-        while True:
-            # Read temperature from climate sensor
-            temperature = climate_sensor.read_temperature()
+        # If you want to test the real-time climate_sensor, then pass climate_sensor object to this method.
+        # The climate_sensor object should have a method which returns an integer value
+        # For example, if we want the system work based on the temperature,
+        # we use get_temperature() method of climate_sensor object
+        # home_guardian.initialize(climate_sensor, "get_temperature")
 
-            # Update display with temperature
-            display.show(str(temperature))
-
-            # Check temperature and control components accordingly
-            if temperature < 15:
-                fan.turn_off()
-                light_bulb.set_color("blue")
-            elif 15 <= temperature <= 30:
-                fan.turn_off()
-                light_bulb.set_color("green")
-            elif 30 < temperature <= 50:
-                fan.turn_on()
-                light_bulb.set_color("red")
-            else:
-                while true:
-                    light_bulb.set_color
-                    time.sleep(1)
-                fire_alarm.start()
-
-            # Check slide potentiometer for user input
-
-            # Add a delay to avoid excessive polling
-            time.sleep(1)
-
+        # If we want to use slider to check the system works or not,
+        # we pass slide_potentiometer object and its read_value method to the home_guardian system.
+        # the read_value() method of the slide_potentiometer returns int value.
+        home_guardian.initialize(slide_potentiometer, "read_value")
     except KeyboardInterrupt:
-        # Clean up GPIO pins on keyboard interrupt
         board.shutdown()

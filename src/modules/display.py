@@ -21,12 +21,14 @@ class Display:
             line2 = line2[:16]
 
         # Print line1
-        self.lcd.set_cursor(0, 0)
-        self.lcd.print(line1)
+        if len(line1) > 0:
+            self.lcd.set_cursor(0, 0)
+            self.lcd.print(line1)
 
         # Print line2
-        self.lcd.set_cursor(0, 1)
-        self.lcd.print(line2)
+        if len(line2) > 0:
+            self.lcd.set_cursor(0, 1)
+            self.lcd.print(line2)
 
         # Need to give some time to execute printing both lines, otherwise it doesn't work
         time.sleep(1)
