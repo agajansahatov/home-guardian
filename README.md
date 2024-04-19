@@ -222,7 +222,7 @@ By combining object-oriented design principles with design patterns such as Obse
 
 The "Home Guardian" system adheres to fundamental principles of software engineering, showcasing the following best practices:
 
-1. **Object-Oriented Design (OOD)**: Embracing OOD principles, the system's components are meticulously crafted to be modular and easily maintainable. By encapsulating functionalities within classes, the system achieves a high level of reusability and scalability.
+1. **Object-Oriented Design (OOD)**: Embracing OOP principles, the system's components are meticulously crafted to be modular and easily maintainable. By encapsulating functionalities within classes, the system achieves a high level of reusability and scalability.
 
 2. **Design Patterns** are to design reusable and extensible object-oriented software:
    - **Strategy Pattern**: The system employs the Strategy pattern to efficiently handle various input sources. Through the `initialize` method within the `HomeGuardian` class, the system dynamically adapts to different input mechanisms. Whether it's real-time sensor data or simulated input from a slider, the Strategy pattern facilitates seamless transitions between these sources.
