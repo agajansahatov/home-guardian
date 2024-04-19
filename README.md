@@ -124,56 +124,113 @@ Before getting started with the "Home Guardian" project, make sure you have the 
 
 1. Clone the project repository into your desired folder.
 2. Open a command prompt (cmd) and navigate to the project directory.
-3. Run the command `python setup.py install` to install the required dependencies.
+3. Run the command `python setup.py install` to install the required dependencies. if there is an error, it is possibly because your computer already have an instance of pymata4EX.egg-info on you computer. You can check it by going to the directory C:\Users\your-user-name\AppData\Local\Programs\Python\Python312\Lib\site-packages, if there is pymata4EX-0.1-py3.12.egg delete it.
+
 
 ## Running the Project
 
-1. Connect your Practice Board to your computer.
-2. Open the Arduino, navigate to `File` > `Examples` > `Examples from Custom Libraries` > `FirmataExpress`. Select the board "Arduino Uno" and choose the appropriate port to which your Arduino board is connected. Click the upload button (->) to upload the FirmataExpress sketch to your Arduino board.
-2. Open the project in PyCharm. 
-3. Navigate to the `src` package. 
-4. Run the `main.py` script to start the "Home Guardian" system. 
-5. If you want the system work based on the real-time climate, then pass the climate_sensor to the home_guardian system like this - home_guardian.initialize(climate_sensor, "get_temperature"). 
-6. If we want to simulate the system to check the system works or not, use the slider on the board, pass slide_potentiometer object and its read_value method to the home_guardian system like this - home_guardian.initialize(slide_potentiometer, "read_value").
+To run the "Home Guardian" system, follow these steps:
 
+1. **Connect the Mini Practice Board**: Connect your Mini Practice Board (Arduino UNO) to your computer using a USB cable.
 
+2. **Upload FirmataExpress Sketch**:
+   - Open the Arduino IDE.
+   - Navigate to `File` > `Examples` > `Examples from Custom Libraries` > `FirmataExpress`.
+   - Select the "Arduino Uno" board and choose the appropriate port to which your Arduino board is connected.
+   - Click the upload button (->) to upload the FirmataExpress sketch to your Arduino board.
 
+3. **Open the Project in PyCharm**:
+   - Open the "Home Guardian" project in PyCharm IDE. Ensure that PyMata4EX is already embedded inside the project.
 
+4. **Run the System**:
+   - Navigate to the `src` package in the project.
+   - Run the `main.py` script to start the "Home Guardian" system.
+
+5. **Select Input Source**:
+   - If you want the system to work based on real-time climate data, pass the `climate_sensor` object to the `home_guardian` system using the `initialize` method, like this: `home_guardian.initialize(climate_sensor, "get_temperature")`.
+   - If you want to simulate the system to check its functionality, use the slider on the Mini Practice Board. Pass the `slide_potentiometer` object and its `read_value` method to the `home_guardian` system, like this: `home_guardian.initialize(slide_potentiometer, "read_value")`.
 
 ## Implementation
-The system is implemented using a combination of hardware and software components, including Arduino UNO boards, sensors, actuators, and a Python script. The Arduino board interfaces with sensors to collect environmental data, while the Python script processes this data and controls external devices based on predefined rules and conditions. The integration of various technologies enables the creation of a versatile and effective smart home environmental monitoring system.
 
-### System Overview
+The "Home Guardian" system is implemented using a combination of hardware and software components, including Arduino UNO boards, sensors, actuators, and a Python script. Here's an overview of the implementation:
 
-The system utilizes the principles of object-oriented programming (OOP) and several design patterns to create an effective and flexible smart home environmental monitoring system. I have put the images of the working system and the UML diagram in the "internship" directory.
+### Hardware Components (Practice Board)
 
-Here's an overview of how the system works:
+The Mini Practice Board provides various analog and digital input/output pins. In this project, we utilize the following components:
+- **Climate Sensor**: Monitors temperature and humidity using "Digital pin 2" connected to the sensor.
+- **Display**: Utilizes "Analog pins A4 and A5" connected to an LCD display for visual output.
+- **Fan**: Controlled via "Digital pin 3" to regulate airflow.
+- **Fire Alarm**: Activated through "Digital pin 4" connected to a buzzer for emergency alerts.
+- **RGB LED Light Bulb**: Controlled by "Digital pins 5, 6, and 7" to indicate different environmental conditions.
+- **Slide Potentiometer**: Reads analog values and passes to "Analog pin A2" for simulating temperature changes.
 
-### Object-Oriented Design
+### Software Components
 
-The system is designed using OOP principles, with each component represented as a separate class. These classes encapsulate the behavior and state of individual components, making the system modular and easy to maintain.
+The software components are organized into separate modules under the `src/modules` directory:
+- **ClimateSensor**: Implements temperature and humidity monitoring using "Digital pin 2".
+- **Display**: Manages visual output using an LCD display using "Analog pins A4 and A5".
+- **Fan**: Controls the operation of the fan using "Digital pin 3".
+- **FireAlarm**: Handles emergency alerts through a buzzer using "Digital pin 4".
+- **LightBulb**: Manages the color and intensity of the RGB LED light bulb using "Digital pins 5, 6, and 7".
+- **SlidePotentiometer**: Reads analog values from the slide potentiometer using "Analog pin A2".
 
-### Design Patterns
+### File System Structure
 
-#### Observer Pattern
-
-The system employs the Observer pattern to monitor changes in environmental factors such as temperature, humidity, and air quality. The `HomeGuardian` class acts as the observer, while the `ClimateSensor` and `SlidePotentiometer` classes serve as the subjects. When the state of a subject changes, it notifies the observer, allowing the system to react accordingly.
-
-#### Strategy Pattern
-
-The Strategy pattern is used to handle different input sources for the system. The `HomeGuardian` class defines a method `initialize`, which accepts an object and a method name as parameters. This allows the system to dynamically switch between different input sources, such as real-time sensor data or simulated input from a slider.
+The project directory structure is organized as follows:
+```
+Root
+│
+├── .idea
+├── build
+├── dist
+├── examples
+├── internship
+├── pymata4EX
+├── pymata4EX.egg-info
+├── src
+│   ├── modules
+│   │   ├── climate_sensor.py
+│   │   ├── display.py
+│   │   ├── fan.py
+│   │   ├── fire_alarm.py
+│   │   ├── i2c_liquidcrystaldisplay.py
+│   │   ├── climate_sensor.py
+│   │   ├── lightbulb.py
+│   │   └── slide_potentiometer.py
+│   ├── home_guardian.py
+│   └── main.py
+├── .gitattributes
+├── .gitignore
+├── pypi_desc.md
+├── README.md
+└── setup.py
+```
 
 ### System Workflow
 
-1. Initialization: The system is initialized by creating instances of various components, including the `Display`, `Fan`, `FireAlarm`, `LightBulb`, and input sources such as the `ClimateSensor` and `SlidePotentiometer`.
+1. Initialization: The system is initialized by creating instances of `ClimateSensor`, `SlidePotentiometer`, `HomeGuardian` classes in the main.py. Along with the HomeGuardian class the instances of the `Display`, `Fan`, `FireAlarm` and `LightBulb` classes are created. 
 
-2. Input Handling: The `HomeGuardian` class handles input from the selected source (e.g., temperature sensor or slider). If real-time sensor data is used, the system continuously monitors changes in environmental factors. If simulated input is used, the system periodically reads input from the slider.
+2. Input Handling: One of input sources `ClimateSensor` or `SlidePotentiometer` is passed as an argument to the `HomeGuardian` object. The `HomeGuardian` class handles input from the selected source (e.g., temperature sensor or slider). If real-time sensor data is used, the system continuously monitors changes in environmental factors. If simulated input is used, the system periodically reads input from the slider.
 
 3. State Monitoring: As changes in environmental factors are detected, the `HomeGuardian` class updates the system's state and determines the appropriate actions to take. This may include adjusting the fan speed, changing the color of the light bulb, or activating the fire alarm in case of emergency.
 
 4. User Interaction: The system provides feedback to the user through the display, indicating the current status of environmental factors and any actions being taken. Users can also interact with the system by adjusting settings or input parameters.
 
 By combining object-oriented design principles with design patterns such as Observer and Strategy, the "Home Guardian" system provides a robust and adaptable solution for smart home environmental monitoring.
+
+### Software Engineering Practices
+
+The "Home Guardian" system adheres to fundamental principles of software engineering, showcasing the following best practices:
+
+1. **Object-Oriented Design (OOD)**: Embracing OOD principles, the system's components are meticulously crafted to be modular and easily maintainable. By encapsulating functionalities within classes, the system achieves a high level of reusability and scalability.
+
+2. **Design Patterns** are to design reusable and extensible object-oriented software:
+   - **Strategy Pattern**: The system employs the Strategy pattern to efficiently handle various input sources. Through the `initialize` method within the `HomeGuardian` class, the system dynamically adapts to different input mechanisms. Whether it's real-time sensor data or simulated input from a slider, the Strategy pattern facilitates seamless transitions between these sources.
+   - **Observer Pattern**: Utilizing the Observer pattern, the system establishes a robust mechanism for monitoring changes in environmental factors. Here, the `HomeGuardian` class assumes the role of an observer, while either the `ClimateSensor` or `SlidePotentiometer` class serves as the subject, depending on user selection. When the subject's state undergoes a modification, the observers are promptly notified, empowering the system to respond appropriately.
+
+3. **UML Diagrams**: Comprehensive UML diagrams, located in the "internship" directory, offer a visual representation of the system's architecture and the intricate interactions among its components. These diagrams serve as invaluable tools for understanding, communicating, and refining the system's design.
+
+By meticulously incorporating these software engineering practices, the "Home Guardian" system not only delivers a robust and adaptable solution for smart home environmental monitoring but also sets a high standard for code quality, maintainability, and scalability.
 
 ## Collaborating
 You can collaborate to this project if you want. Just contact me though email - agajan.st@gmail.com.
