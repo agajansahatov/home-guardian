@@ -1,6 +1,29 @@
 # Home Guardian - An IoT Smart Home Environmental Monitoring System
 
-The "Home Guardian" project is an IoT-based smart home environmental monitoring system implemented using Python, Arduino, and the PyMata4Ex library. It allows users to monitor and control various environmental factors within their home, such as temperature, humidity, and air quality, to ensure a comfortable and safe living environment.
+The "Home Guardian" project is an IoT-based smart home environmental monitoring system implemented using a Mini Practice Board, Python, Arduino, and the PyMata4Ex library. It allows users to monitor and control various environmental factors within their home, such as temperature, humidity, and air quality, to ensure a comfortable and safe living environment.
+The project leverages the Arduino UNO microcontroller as its core to create an IoT-based smart home environmental monitoring system. It integrates various sensors to collect data on temperature, humidity, light levels, and proximity. This data is then processed by a Python script running on a computer, which communicates with the Arduino board via RS232 communication. 
+
+### Features
+
+1. **Data Acquisition**: The system gathers data from sensors including temperature, humidity, light, and ultrasonic sensors connected to the Arduino UNO controller.
+
+2. **Data Display**: Collected data is displayed in real-time on an LCD screen, providing users with insights into the environmental conditions within their home.
+
+3. **Data Analysis**: The Python script analyzes the collected data to derive insights and make decisions based on predefined criteria.
+
+4. **Control of External Devices**: Based on the data analysis results, the system controls various external function modules such as LED lights, DC motors, servo motors, buzzers, etc., to implement basic smart home functions.
+
+### Technologies Used
+
+1. **Arduino Microcontroller Technology**: The Arduino UNO microcontroller serves as the central processing unit for the system, interfacing with sensors and external devices to collect data and execute control commands.
+
+2. **Sensor Technology**: Various sensors including temperature sensors, humidity sensors, light sensors, and ultrasonic sensors are employed to gather environmental data.
+
+3. **RS232 Communication Technology**: RS232 serial communication protocol is used for communication between the Arduino board and the computer running the Python script, enabling data transfer and command execution.
+
+4. **Python Programming Technology**: Python programming language is used to develop the script responsible for data processing, analysis, and decision-making based on the collected sensor data.
+
+5. **I2C Bus Technology**: The I2C (Inter-Integrated Circuit) bus protocol may be utilized for communication between certain sensors and the Arduino board, enabling efficient data exchange over short distances.
 
 ## Installation Guide
 
@@ -9,6 +32,7 @@ Before getting started with the "Home Guardian" project, make sure you have the 
 - Python (v3.12.3)
 - PyCharm (v2024.1)
 - Arduino IDE (v2.3.2)
+- Connect Mini Practice Board.
 
 ### PyMata4Ex Library Setup
 
@@ -30,7 +54,8 @@ Before getting started with the "Home Guardian" project, make sure you have the 
 
 ## Running the Project
 
-1. Open the Arduino, navigate to `File` > `Examples` > `Examples from Custom Libraries` > `FirmataExpress`. Select the board "Arduino Uno" and choose the appropriate port to which your Arduino board is connected. Click the upload button (->) to upload the FirmataExpress sketch to your Arduino board.
+1. Connect your Practice Board to your computer.
+2. Open the Arduino, navigate to `File` > `Examples` > `Examples from Custom Libraries` > `FirmataExpress`. Select the board "Arduino Uno" and choose the appropriate port to which your Arduino board is connected. Click the upload button (->) to upload the FirmataExpress sketch to your Arduino board.
 2. Open the project in PyCharm. 
 3. Navigate to the `src` package. 
 4. Run the `main.py` script to start the "Home Guardian" system. 
@@ -39,9 +64,14 @@ Before getting started with the "Home Guardian" project, make sure you have the 
 
 Sure, here's an addition to your README.md explaining how the system works:
 
+## Implementation
+The system is implemented using a combination of hardware and software components, including Arduino UNO boards, sensors, actuators, and a Python script. The Arduino board interfaces with sensors to collect environmental data, while the Python script processes this data and controls external devices based on predefined rules and conditions. The integration of various technologies enables the creation of a versatile and effective smart home environmental monitoring system.
+
 ## System Overview
 
-The "Home Guardian" system utilizes the principles of object-oriented programming (OOP) and several design patterns to create an effective and flexible smart home environmental monitoring system. I have put the images of the working system and the UML diagram in the "results" folder. Here's an overview of how the system works:
+The system utilizes the principles of object-oriented programming (OOP) and several design patterns to create an effective and flexible smart home environmental monitoring system. I have put the images of the working system and the UML diagram in the "results" folder.
+
+Here's an overview of how the system works:
 
 ### Object-Oriented Design
 
