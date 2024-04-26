@@ -5,7 +5,6 @@ from modules.slide_potentiometer import SlidePotentiometer
 from home_guardian import HomeGuardian
 
 if __name__ == "__main__":
-    # Initialize board and components
     board = pymata4EX.Pymata4EX()
     # climate_sensor = ClimateSensor(board)
     slide_potentiometer = SlidePotentiometer(board)
