@@ -3,6 +3,8 @@
 The "Home Guardian" project is an IoT-based smart home environmental monitoring system implemented using a Mini Practice Board, Python, Arduino, and the PyMata4Ex library. It allows users to monitor and control various environmental factors within their home, such as temperature, humidity, and air quality, to ensure a comfortable and safe living environment.
 The project leverages the Arduino UNO microcontroller as its core to create an IoT-based smart home environmental monitoring system. It integrates various sensors to collect data on temperature, humidity, light levels, and proximity. This data is then processed by a Python script running on a computer, which communicates with the Arduino board via RS232 communication. 
 
+This project was developed as an internship project during my internship at Zhilin Information Technology Co., Ltd., organized by Taiyuan University of Technology and the company itself. The internship took place from April 10, 2024, to April 23, 2024.
+
 ## Overall Features
 
 1. **Data Acquisition**: The system gathers data from sensors including temperature, humidity, light, and ultrasonic sensors connected to the Arduino UNO controller.
@@ -232,5 +234,5 @@ The "Home Guardian" system adheres to fundamental principles of software enginee
 
 By meticulously incorporating these software engineering practices, the "Home Guardian" system not only delivers a robust and adaptable solution for smart home environmental monitoring but also sets a high standard for code quality, maintainability, and scalability.
 
-## Collaborating
-You can collaborate to this project if you want. Just contact me though email - agajan.st@gmail.com.
+## Contributing
+You can contribute to this project if you want. Just contact me though email - agajan.st@gmail.com.
